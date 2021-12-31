@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
       id: req.params.id
     },
     include: {
-      model: Product
+      model: Tag
     }
   })
     .then(dbProductsData => {
