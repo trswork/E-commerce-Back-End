@@ -10,7 +10,12 @@ router.get('/', (req, res) => {
   Product.findAll(
     {
       include: [
-
+        {
+          model: Category,
+        },
+        {
+          model: Tag,
+        }
       ]
     }
   )
@@ -29,9 +34,12 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id
     },
-    include: {
-      model: Tag
-    }
+    include: [{
+      model: Category,
+    },
+    {
+      model: Tag,
+    }]
   })
     .then(dbProductsData => {
       if (!dbProductsData) {
