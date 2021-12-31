@@ -12,9 +12,11 @@ router.get('/', (req, res) => {
       include: [
         {
           model: Category,
+          attributes: ['category_name']
         },
         {
           model: Tag,
+          attributes: ['tag_name']
         }
       ]
     }
@@ -36,9 +38,11 @@ router.get('/:id', (req, res) => {
     },
     include: [{
       model: Category,
+      attributes: ['category_name']
     },
     {
       model: Tag,
+      attributes: ['tag_name']
     }]
   })
     .then(dbProductsData => {
