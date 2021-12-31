@@ -20,6 +20,7 @@ Product.init(
       allowNull: false
     },
     price: {
+      type: DataTypes.DECIMAL,
       primaryKey: true,
       validate: {}
     },
