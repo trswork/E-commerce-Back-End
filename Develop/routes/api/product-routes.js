@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   Product.findAll(
     {
       include: [
-        
+
       ]
     }
   )
@@ -25,6 +25,25 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  Product.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: {
+      model: Product
+    }
+  })
+    .then(dbProductsData => {
+      if (!dbProductsData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      res.json(dbProductsData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // create new product
